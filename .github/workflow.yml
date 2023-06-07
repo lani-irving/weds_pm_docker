@@ -20,15 +20,3 @@ jobs:
         run: |
           python3 -c "import requests; r=requests.get('http://localhost:8080'); print(r.status_code)" 
           curl -s localhost:8080
-  dummy_job:
-    #needs - to execute sequentially
-    needs: [push_workflow] 
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dummy Job
-        run: echo "Dummy job!!!"
-  show_info:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Output Github Object
-        run: echo "${{ toJSON(github)}}"
