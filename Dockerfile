@@ -1,2 +1,2 @@
-FROM httpd:2.4
-EXPOSE 80
+FROM nginx:latest
+CMD echo "Hello!"
