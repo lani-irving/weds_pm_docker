@@ -1,0 +1,22 @@
+#start container with exposed port
+# test to see if web app is running (curl command)
+
+name: Deploy Web App
+on: [push, workflow_dispatch]
+
+#copied and pasted - need to amend this after lunch!
+jobs: 
+  push_workflow: 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Download Github Code
+        uses: actions/checkout@v3
+      - name: Download Docker Nginx
+        run: |
+          docker image pull nginx
+          docker image ls
+          docker container run -d -p 8080:80 nginx
+      - name: Test web deployment
+        run: |
+          python3 -c "import requests; r=requests.get('http://localhost:8080'); print(r.status_code)" 
+          curl -s localhost:8080
